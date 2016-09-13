@@ -16,9 +16,14 @@ class HelloTriangle : public AppDelegate {
 
     void onFrameUpdate();
 
+    void onTerminate();
+
    private:
-    GLuint programID;
-    GLuint vertexbuffer;
+    GLuint programID0;
+    GLuint programID1;
+    GLuint EBO;
+    GLuint VAO;
+    GLuint VBO;
 };
 }
 

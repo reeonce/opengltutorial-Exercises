@@ -17,19 +17,20 @@ App::App(char const *title_, AppDelegate *delegate_) {
 void App::run() {
     createWindow();
 
-    GLFWwindow *window = (GLFWwindow *)this->window_;
-    this->delegate_->onWindowInited(window);
+    GLFWwindow *window = (GLFWwindow *)window_;
+    delegate_->onWindowInited(window);
 
     while (!glfwWindowShouldClose(window)) {
         glfwPollEvents();
 
-        this->delegate_->onFrameUpdate();
+        delegate_->onFrameUpdate();
 
         // Swap buffers
         glfwSwapBuffers(window);
     }
 
     glfwTerminate();
+    delegate_->onTerminate();
 }
 
 void key_callback(GLFWwindow *indow, int key, int scancode, int action, int mode) {
@@ -52,9 +53,9 @@ void App::createWindow() {
     glfwWindowHint(GLFW_OPENGL_PROFILE,
                    GLFW_OPENGL_CORE_PROFILE); // We don't want the old OpenGL
 
-    this->window_ = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, this->title_,
-                                     nullptr, nullptr);
-    if (this->window_ == nullptr) {
+    window_ = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, title_, nullptr,
+                               nullptr);
+    if (window_ == nullptr) {
         fprintf(stderr, "ERROR: Could not create a new rendering window.\n");
         glfwTerminate();
         exit(EXIT_FAILURE);

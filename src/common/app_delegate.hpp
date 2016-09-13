@@ -11,6 +11,8 @@ class AppDelegate {
     virtual void onWindowInited(GLFWwindow *window) = 0;
 
     virtual void onFrameUpdate() = 0;
+
+    virtual void onTerminate() = 0;
 };
 }
 
